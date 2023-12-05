@@ -1,0 +1,33 @@
+3 – Consider the following database schema:
+
+TABLE     COLUMNS
+--------  -------------------------------------
+SUPPLIER  SUPPLIER_CODE, SUPPLIER_NAME, CITY
+PART      CODE_PART, NAME_PART, PRICE
+CAR       CODE_CAR, NAME_CAR, TYPE
+SUPPLY    CODE_SUPPLIER, CODE_PIECE, CODE_CAR
+
+Write an SQL command that is able to query the suppliers located in the city named
+“VITORIA” that provide the part code “MOTOR” for the car coded “KOMBI”, with their
+respective prices.
+
+Example:
+SUPPLIER    PRICE
+----------  -----
+Supplier A  1,000
+Supplier B  1,500
+
+-- I think that the PART.PRICE should be in the SUPPLY Table to be more consistent general requirements.
+-- The price is a relationship among the three: supplier, piece(part), and car.
+SELECT supplier_name,
+       price
+FROM SUPPLIER,
+     PART,
+     CAR AS c,
+     SUPPLY AS s
+WHERE city = "VITORIA"
+  AND code_part = "MOTOR"
+  AND c.code_car = "KOMBI"
+  AND s.code_supplier = supplier_code
+  AND s.code_piece = code_part
+  AND s.code_car = c.code_car

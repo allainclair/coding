@@ -1,0 +1,28 @@
+
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "allainclair", email = "allainclair@gmail.com"},
+]
+dependencies = [
+    "fastapi>=0.98.0",
+    "psycopg[binary]>=3.1.9",
+    "redis>=4.6.0",
+]
+requires-python = ">=3.11"
+license = {text = "MIT"}
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "mypy>=1.4.1",
+    "httpx>=0.24.1",
+    "uvicorn>=0.22.0",
+]
+
+[tool.pdm.scripts]
+test = "pytest -ssvv"
+run-dev = "pdm run uvicorn app.main:app --reload"
